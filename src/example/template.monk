@@ -1,0 +1,16 @@
+<ol>
+    {% for i, todo of todos %}
+        <li>
+            <input type="checkbox" checked="{{ todo.complete }}" data-index="{{ i }}">
+            {% if todo.complete %}
+                <del>{{ todo.text }}</del>
+            {% else %}
+                <em>{{ todo.text }}</em>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ol>
+<form>
+    <input type="text">
+    <button type="submit">Add #{{ todos.length }}</button>
+</form>

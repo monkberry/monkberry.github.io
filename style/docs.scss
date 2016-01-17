@@ -1,0 +1,67 @@
+.table-of-contents {
+  position: fixed;
+  top: 225px;
+  left: 80px;
+
+  @include mobile {
+    display: none;
+  }
+
+  > a {
+    display: block;
+    position: relative;
+    font-size: 19px;
+    line-height: 30px;
+    text-decoration: none;
+    color: #747474;
+    transition: color 100ms ease-in-out;
+
+    &:hover {
+      color: #fff;
+    }
+
+    &.-active {
+      color: #fff;
+      &:before {
+        content: ' ';
+        background-color: #fff;
+        display: block;
+        position: absolute;
+        width: 60px;
+        height: 1px;
+        top: 14px;
+        left: -80px;
+      }
+    }
+  }
+}
+
+.content.docs {
+  margin-top: 105px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 175px;
+  padding-right: 25px;
+  max-width: 862px;
+  
+  > p:last-child a {
+    font-size: 19px;
+    text-decoration: none;
+    float: right;
+  }
+
+  @include mobile {
+    margin-top: 50px;
+    padding-left: 25px;
+  }
+
+  @media (max-width: 1140px) {
+    margin-top: 75px;
+    padding-left: 240px;
+    padding-right: 50px;
+  }
+
+  @include wide {
+
+  }
+}

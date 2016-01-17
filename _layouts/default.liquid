@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{{ page.title }} — Monkberry</title>
+    <meta name="author" content="Anton Medvedev">
+    {% if page.description %}
+        <meta name="description" content="{{ page.description }}">
+    {% endif %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% assign url = "http://monkberry.js.org" | append: page.url %}
+    <meta property="og:url" content="{{ url }}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Monkberry – a JavaScript library for building web user interfaces">
+    <meta property="og:description" content="Monkberry is blazingly fast, small 1kb and simple JavaScript library for building web user interfaces.">
+    <meta property="og:image" content="http://monkberry.js.org/assets/monkberry-opengraph.png">
+    <link rel="canonical" href="{{ url }}">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+    <link rel="stylesheet" href="/dist/bundle.css">
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-72802692-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+</head>
+<body>
+<nav>
+    <a href="/" {% if page.url == "/" %}class="-active"{% endif %}>
+        Monkberry
+    </a>
+    <a href="/docs/getting-started" {% if page.url contains "/docs" %}{% unless page.url contains "/docs/api" %}class="-active"{% endunless %}{% endif %}>
+        Guide
+    </a>
+    <a href="/docs/api" {% if page.url contains "/docs/api" %}class="-active"{% endif %}>
+        API
+    </a>
+    <a href="https://github.com/monkberry/monkberry">
+        <svg class="icon-github" width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><path d="M9 0C4.03 0 0 4.045 0 9.036a9.034 9.034 0 0 0 6.155 8.573c.45.083.615-.196.615-.435 0-.215-.008-.783-.013-1.537-2.503.546-3.032-1.211-3.032-1.211-.408-1.044-.999-1.321-.999-1.321-.817-.561.062-.55.062-.55.903.064 1.378.931 1.378.931.804 1.381 2.107.982 2.62.75.082-.583.314-.981.572-1.207-2-.228-4.1-1.003-4.1-4.465a3.5 3.5 0 0 1 .926-2.425c-.092-.23-.401-1.147.088-2.391 0 0 .756-.243 2.475.926.719-.2 1.488-.3 2.254-.305a8.618 8.618 0 0 1 2.253.305c1.718-1.17 2.472-.926 2.472-.926.491 1.244.182 2.162.09 2.39.577.633.925 1.439.925 2.426 0 3.47-2.104 4.234-4.11 4.458.324.28.612.83.612 1.673 0 1.208-.012 2.183-.012 2.479 0 .242.162.523.62.434A9.035 9.035 0 0 0 18 9.036C18 4.046 13.97 0 9 0" fill="#747474" fill-rule="evenodd"/></svg>
+        GitHub
+    </a>
+
+    <a class="share -right" href="http://www.facebook.com/sharer/sharer.php?u=http://monkberry.js.org" target="_blank">
+        <svg class="icon-facebook" width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><title>Facebook</title><path d="M9.614 18H.994A.993.993 0 0 1 0 17.006V.993C0 .445.445 0 .993 0h16.014c.548 0 .993.445.993.993v16.013a.994.994 0 0 1-.993.994H12.42v-6.97h2.34l.35-2.717h-2.69V6.578c0-.786.218-1.322 1.346-1.322h1.438v-2.43a19.23 19.23 0 0 0-2.096-.107c-2.074 0-3.494 1.266-3.494 3.59v2.004H7.27v2.716h2.345V18z" fill="#FFF" fill-rule="evenodd"/></svg>
+        Share
+    </a>
+    <a class="share" href="https://twitter.com/intent/tweet?url=http://monkberry.js.org&text=Monkberry%20–%20a%20JavaScript%20library%20for%20building%20web%20user%20interfaces" target="_blank">
+        <svg class="icon-twitter" width="18" height="15" viewBox="0 0 18 15" xmlns="http://www.w3.org/2000/svg"><title>Twitter</title><path d="M18 1.776a7.213 7.213 0 0 1-2.12.596A3.778 3.778 0 0 0 17.503.277a7.273 7.273 0 0 1-2.346.918A3.642 3.642 0 0 0 12.462 0C10.424 0 8.77 1.696 8.77 3.787c0 .296.032.585.095.862-3.069-.158-5.79-1.664-7.612-3.958a3.856 3.856 0 0 0-.5 1.906c0 1.313.652 2.472 1.643 3.152a3.626 3.626 0 0 1-1.673-.473v.047c0 1.835 1.273 3.366 2.963 3.713-.31.089-.636.133-.973.133-.238 0-.47-.023-.695-.067.47 1.504 1.833 2.599 3.45 2.628A7.292 7.292 0 0 1 0 13.3 10.282 10.282 0 0 0 5.66 15c6.794 0 10.508-5.77 10.508-10.774 0-.164-.003-.329-.01-.49A7.58 7.58 0 0 0 18 1.776" fill="#FFF" fill-rule="evenodd"/></svg>
+        Tweet
+    </a>
+</nav>
+{{ content }}
+<footer>
+    <div class="with-love">
+        Made with
+        <svg class="icon-love" width="21" height="17" viewBox="0 0 21 17" xmlns="http://www.w3.org/2000/svg"><title>love</title><path d="M14.725.032a5.31 5.31 0 0 0-4.687 2.814 5.312 5.312 0 0 0-10 2.498c0 4.763 5.834 7.397 10 11.564 4.306-4.306 10-6.76 10-11.563A5.312 5.312 0 0 0 14.725.032z" fill="#E82F2F" fill-rule="evenodd"/></svg>
+        <span class="from">from</span>
+        <a href="https://www.facebook.com/groups/230631430637122/">Phuket, Thailand</a>
+    </div>
+    {% if page.url contains "/docs" %}
+    <div class="fork-and-fix">
+        Found a typo? Just <a href="https://github.com/monkberry/monkberry.github.io/edit/master{{ page.url }}.md">edit it</a>!
+    </div>
+    {% endif %}
+</footer>
+<script src="/dist/bundle.js"></script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter38134075 = new Ya.Metrika({
+                    id:38134075,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:false
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/38134075" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</body>
+</html>

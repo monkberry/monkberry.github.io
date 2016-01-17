@@ -1,0 +1,82 @@
+nav {
+  display: flex;
+  margin-top: 60px;
+  margin-left: 80px;
+  margin-right: 80px;
+
+  @include mobile {
+    margin-top: 25px;
+    margin-left: 25px;
+    margin-right: 25px;
+  }
+
+  @include wide {
+    width: 1120px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  > a {
+    align-self: center;
+    color: #747474;
+    font-size: 16px;
+    line-height: 26px;
+    margin-right: 34px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 100ms ease-in-out;
+
+    @include mobile {
+      margin-right: 10px;
+    }
+
+    &:hover,
+    &.-active {
+      color: #fff;
+    }
+
+    .icon-github path {
+      transition: fill 100ms ease-in-out;
+    }
+
+    &:hover .icon-github path {
+      fill: #fff;
+    }
+  }
+
+  .share {
+    box-sizing: border-box;
+    color: #fff;
+    padding: 9px 34px 11px;
+    border: 1px solid #313131;
+    transition: border-color 100ms ease-in-out;
+    margin-right: 8px;
+
+    &:hover {
+      border-color: #fff;
+    }
+
+    &.-right {
+      margin-left: auto;
+    }
+
+    @media (max-width: 640px) {
+      display: none;
+    }
+
+    @include mobile {
+      display: none;
+    }
+
+    @include tablet {
+      padding: 5px 11px;
+    }
+  }
+
+  .icon-github,
+  .icon-facebook,
+  .icon-twitter {
+    vertical-align: text-bottom;
+    margin-right: 4px;
+  }
+}

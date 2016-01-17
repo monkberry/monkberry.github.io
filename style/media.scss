@@ -1,0 +1,72 @@
+$mobile-width: 425px;
+$desktop-width: 1024px;
+$wide-width: 1280px;
+
+/*
+_________
+ mobile  |
+---------*---------------*---------
+        425             1024
+
+          _______________
+         |     tablet    |
+---------*---------------*---------
+        425             1024
+
+_________________________
+    tablet-and-less      |
+---------*---------------*---------
+        425             1024
+
+          _________________________
+         |     tablet-and-more
+---------*---------------*---------
+        425             1024
+
+                          _________
+                         | desktop
+---------*---------------*---------
+        425             1024
+
+                          _________
+                         |  wide
+---------*---------------*---------
+        1024            1280
+*/
+
+
+@mixin mobile {
+  @media (max-width: #{$mobile-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$mobile-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet-and-less {
+  @media (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet-and-more {
+  @media (min-width: #{$mobile-width}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
+@mixin wide {
+  @media (min-width: #{$wide-width}) {
+    @content;
+  }
+}

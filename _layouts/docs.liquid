@@ -1,0 +1,17 @@
+---
+layout: default
+title: page.title
+---
+<div class="table-of-contents">
+    <a href="/docs/getting-started" {% if page.url contains "/docs/getting-started" %}class="-active"{% endif %}>Getting Started</a>
+    <a href="/docs/installation" {% if page.url contains "/docs/installation" %}class="-active"{% endif %}>Installation</a>
+    <a href="/docs/templating" {% if page.url contains "/docs/templating" %}class="-active"{% endif %}>Templating</a>
+    <a href="/docs/event-handling" {% if page.url contains "/docs/event-handling" %}class="-active"{% endif %}>Event handling</a>
+    <a href="/docs/components" {% if page.url contains "/docs/components" %}class="-active"{% endif %}>Components</a>
+    <a href="/docs/directives" {% if page.url contains "/docs/directives" %}class="-active"{% endif %}>Directives</a>
+    <a href="/docs/api" {% if page.url contains "/docs/api" %}class="-active"{% endif %}>API Reference</a>
+</div>
+<div class="content docs">
+    {{ content }}
+</div>
+<div class="clear-both"></div>
