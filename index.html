@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Monkberry by monkberry</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="google-site-verification" content="qBbJVARmFDw6P26Xl5RQKjMpZdraFIMHT03DFHo4ZUQ" />
     <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
@@ -13,37 +12,60 @@
   <body>
     <section class="page-header">
       <h1 class="project-name">Monkberry</h1>
-      <h2 class="project-tagline">JavaScript DOM Template Engine</h2>
+      <h2 class="project-tagline">Monkberry is a JavaScript library for building web user interfaces</h2>
     </section>
 
     <section class="main-content">
       <h1>
-<a id="monkberry---javascript-template-engine" class="anchor" href="#monkberry---javascript-template-engine" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Monkberry - JavaScript template engine</h1>
+<a id="monkberry" class="anchor" href="#monkberry" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Monkberry</h1>
 
 <p><a href="https://travis-ci.org/monkberry/monkberry"><img src="https://travis-ci.org/monkberry/monkberry.svg?branch=master" alt="Build Status"></a></p>
 
-<p>Monkberry compile template to JavaScript code for creating nodes with DOM API and helper methods for updating content of these nodes.</p>
+<p>Monkberry is <strong>blazingly fast</strong>, <strong>small <code>1kb</code></strong> and <strong>simple</strong> JavaScript library for building <strong>web user interfaces</strong>.</p>
 
-<pre><code>npm install monkberry --save
-</code></pre>
+<h2>
+<a id="example" class="anchor" href="#example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example</h2>
+
+<p>Monkberry comes with powerfull templating engine, which is compiled to JavaScript.</p>
+
+<div class="highlight highlight-text-html-twig"><pre>&lt;<span class="pl-ent">ol</span>&gt;
+  {% <span class="pl-k">for</span> <span class="pl-smi">todos</span> %}
+    &lt;<span class="pl-ent">li</span>&gt;
+      {% <span class="pl-k">if</span> <span class="pl-smi">complete</span> %}
+        &lt;<span class="pl-ent">del</span>&gt;{{ <span class="pl-smi">text</span> }}&lt;/<span class="pl-ent">del</span>&gt;
+      {% <span class="pl-k">else</span> %}
+        &lt;<span class="pl-ent">em</span>&gt;{{ <span class="pl-smi">text</span> }}&lt;/<span class="pl-ent">em</span>&gt;
+      {% <span class="pl-k">endif</span> %}
+    &lt;/<span class="pl-ent">li</span>&gt;
+  {% <span class="pl-k">endfor</span> %}
+&lt;/<span class="pl-ent">ol</span>&gt;</pre></div>
+
+<p>and then</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">import</span> <span class="pl-smi">Monkberry</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>monkberry<span class="pl-pds">'</span></span>;
+<span class="pl-k">import</span> <span class="pl-smi">Template</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>template.monk<span class="pl-pds">'</span></span>;
+
+<span class="pl-k">const</span> <span class="pl-c1">view</span> <span class="pl-k">=</span> <span class="pl-smi">Monkberry</span>.<span class="pl-en">render</span>(Template, <span class="pl-c1">document</span>.<span class="pl-c1">body</span>);
+
+<span class="pl-smi">view</span>.<span class="pl-en">update</span>({todos<span class="pl-k">:</span> [<span class="pl-k">...</span>]});</pre></div>
 
 <h2>
 <a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h2>
 
 <ul>
-<li>Small, dependency free</li>
-<li>Simple and minimalistic</li>
+<li>Small <strong><code>1kb</code></strong> minified &amp; gzipped</li>
+<li>Simple, small learning curve</li>
 <li>Fully tested</li>
-<li>One-way data flow</li>
 <li>Precompiled templates</li>
 <li>SourceMaps</li>
 <li>Custom tags</li>
-<li>Extremely fast!</li>
+<li>Blazingly fast (only necessary dom updates)</li>
 </ul>
 
+<h2>
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Documentation</h2>
 
-
-
+<p>Documentation available on <a href="http://monkberry.js.org">monkberry.js.org</a> site.</p>
 
 <h2>
 <a id="table-of-contents" class="anchor" href="#table-of-contents" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Table of Contents</h2>
@@ -66,11 +88,10 @@
 <li><a href="#event-handling">Event Handling</a></li>
 <li><a href="#globals">Globals</a></li>
 <li><a href="#prerender">Prerender</a></li>
-<li><a href="#wrappers">Wrappers</a></li>
 <li><a href="#transforms">Transforms</a></li>
-<li><a href="#parsers">Parsers</a></li>
 <li><a href="#unsafe">Unsafe</a></li>
 <li><a href="#comments">Comments</a></li>
+<li><a href="#blocks">Blocks</a></li>
 </ul>
 </li>
 <li>
@@ -81,33 +102,26 @@
 <a href="#monkberry">Monkberry</a>
 
 <ul>
-<li><a href="#monkberryrendername-values-nocache">monkberry.render(name, [values, [noCache]])</a></li>
-<li><a href="#monkberryprerendername-times">monkberry.prerender(name, times)</a></li>
-<li><a href="#monkberrymounttemplates">monkberry.mount(templates)</a></li>
-</ul>
-</li>
+<li><a href="#monkberryrendername-values-nocache">monkberry.render(template, node[, options])</a></li>
 <li>
-<a href="#monkberryview">Monkberry.View</a>
-
-<ul>
-<li><a href="#viewappendtotonode">view.appendTo(toNode)</a></li>
-<li><a href="#viewinsertbeforetonode">view.insertBefore(toNode)</a></li>
-<li><a href="#viewcreatedocument">view.createDocument()</a></li>
-<li><a href="#viewupdatedata">view.update(data)</a></li>
-<li><a href="#viewremoveforce">view.remove([force])</a></li>
-<li><a href="#viewqueryselectorquery">view.querySelector(query)</a></li>
+<a href="#monkberryprerendername-times">monkberry.prerender(template, times)</a> </li>
+<li><a href="#viewappendtotonode">Monkberry.prototype.appendTo(toNode)</a></li>
+<li><a href="#viewinsertbeforetonode">Monkberry.prototype.insertBefore(toNode)</a></li>
+<li><a href="#viewcreatedocument">Monkberry.prototype.createDocument()</a></li>
+<li><a href="#viewupdatedata">Monkberry.prototype.update(data)</a></li>
+<li><a href="#viewremoveforce">Monkberry.prototype.remove()</a></li>
+<li><a href="#viewqueryselectorquery">Monkberry.prototype.querySelector(query)</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a href="#tests">Tests</a></li>
+<li><a href="#plugins">Plugins</a></li>
 <li><a href="#benchmarks">Benchmarks</a></li>
 </ul>
 
-
-
 <h2>
-<a id="example" class="anchor" href="#example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example</h2>
+<a id="example-1" class="anchor" href="#example-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example</h2>
 
 <p>Monkberry will compile this template:</p>
 
@@ -120,24 +134,23 @@
 
 <p>To JavaScript code like this:</p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> div <span class="pl-k">=</span> <span class="pl-smi">document</span>.<span class="pl-c1">createElement</span>(<span class="pl-s"><span class="pl-pds">'</span>div<span class="pl-pds">'</span></span>);
-<span class="pl-k">var</span> h1 <span class="pl-k">=</span> <span class="pl-smi">document</span>.<span class="pl-c1">createElement</span>(<span class="pl-s"><span class="pl-pds">'</span>h1<span class="pl-pds">'</span></span>);
-<span class="pl-k">var</span> p <span class="pl-k">=</span> <span class="pl-smi">document</span>.<span class="pl-c1">createElement</span>(<span class="pl-s"><span class="pl-pds">'</span>p<span class="pl-pds">'</span></span>);
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> div <span class="pl-k">=</span> <span class="pl-c1">document</span>.<span class="pl-c1">createElement</span>(<span class="pl-s"><span class="pl-pds">'</span>div<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> h1 <span class="pl-k">=</span> <span class="pl-c1">document</span>.<span class="pl-c1">createElement</span>(<span class="pl-s"><span class="pl-pds">'</span>h1<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> p <span class="pl-k">=</span> <span class="pl-c1">document</span>.<span class="pl-c1">createElement</span>(<span class="pl-s"><span class="pl-pds">'</span>p<span class="pl-pds">'</span></span>);
 
 <span class="pl-smi">div</span>.<span class="pl-c1">appendChild</span>(h1);
 <span class="pl-smi">div</span>.<span class="pl-c1">appendChild</span>(p);
 
    <span class="pl-k">...</span>
 
-<span class="pl-c1">view</span>.<span class="pl-en">update</span> <span class="pl-k">=</span> <span class="pl-k">function</span> (<span class="pl-smi">data</span>) {
+<span class="pl-smi">view</span>.<span class="pl-en">update</span> <span class="pl-k">=</span> <span class="pl-k">function</span> (<span class="pl-smi">data</span>) {
   <span class="pl-smi">h1</span>.<span class="pl-smi">textContent</span> <span class="pl-k">=</span> <span class="pl-smi">data</span>.<span class="pl-c1">title</span>;
   <span class="pl-smi">p</span>.<span class="pl-smi">textContent</span> <span class="pl-k">=</span> <span class="pl-smi">data</span>.<span class="pl-c1">text</span>;
 };</pre></div>
 
 <p>Which can be used like that: </p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> view <span class="pl-k">=</span> <span class="pl-smi">monkberry</span>.<span class="pl-en">render</span>(<span class="pl-s"><span class="pl-pds">'</span>template<span class="pl-pds">'</span></span>);
-<span class="pl-smi">view</span>.<span class="pl-en">appendTo</span>(<span class="pl-smi">document</span>.<span class="pl-c1">body</span>); 
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> view <span class="pl-k">=</span> <span class="pl-smi">Monkberry</span>.<span class="pl-en">render</span>(template, <span class="pl-c1">document</span>.<span class="pl-c1">body</span>);
 
 <span class="pl-smi">view</span>.<span class="pl-en">update</span>({
   title<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Monkberry<span class="pl-pds">'</span></span>,
@@ -145,7 +158,7 @@
 });</pre></div>
 
 <h2>
-<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Documentation</h2>
+<a id="documentation-1" class="anchor" href="#documentation-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Documentation</h2>
 
 <h3>
 <a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h3>
@@ -162,22 +175,12 @@
 <pre><code>monkberry --source-map --output template.js templates/*.html
 </code></pre>
 
-<p>Require generated <code>template.js</code> and <code>monkberry.js</code> files and mount template:</p>
+<p>Require generated <code>template.js</code> and <code>monkberry.js</code> files and render that view.</p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> monkberry <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>monkberry<span class="pl-pds">'</span></span>);
-<span class="pl-k">var</span> template <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>./template.js<span class="pl-pds">'</span></span>);
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> Monkberry <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>monkberry<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> Template <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>./template.js<span class="pl-pds">'</span></span>);
 
-<span class="pl-smi">monkberry</span>.<span class="pl-en">mount</span>(template);</pre></div>
-
-<p>Render that view.</p>
-
-<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> view <span class="pl-k">=</span> <span class="pl-smi">monkberry</span>.<span class="pl-en">render</span>(<span class="pl-s"><span class="pl-pds">'</span>template<span class="pl-pds">'</span></span>); 
-<span class="pl-c">// or</span>
-<span class="pl-k">var</span> view <span class="pl-k">=</span> <span class="pl-smi">monkberry</span>.<span class="pl-en">render</span>(<span class="pl-s"><span class="pl-pds">'</span>template<span class="pl-pds">'</span></span>, {<span class="pl-k">...</span>}); </pre></div>
-
-<p>Attach generated DOM nodes to the page.</p>
-
-<div class="highlight highlight-source-js"><pre><span class="pl-smi">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">'</span>root<span class="pl-pds">'</span></span>).<span class="pl-c1">appendChild</span>(<span class="pl-smi">view</span>.<span class="pl-en">createDocument</span>());</pre></div>
+<span class="pl-k">var</span> view <span class="pl-k">=</span> <span class="pl-smi">Monkberry</span>.<span class="pl-en">render</span>(Template, <span class="pl-c1">document</span>.<span class="pl-c1">body</span>);</pre></div>
 
 <p>Now, to update data of view on page:</p>
 
@@ -222,7 +225,8 @@
 
 <p>Render that template:</p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> view <span class="pl-k">=</span> <span class="pl-smi">monkberry</span>.<span class="pl-en">render</span>(<span class="pl-s"><span class="pl-pds">'</span>example<span class="pl-pds">'</span></span>, {
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> view <span class="pl-k">=</span> <span class="pl-smi">Monkberry</span>.<span class="pl-en">render</span>(Example, <span class="pl-c1">document</span>.<span class="pl-c1">body</span>);
+<span class="pl-smi">view</span>.<span class="pl-en">update</span>({
   check<span class="pl-k">:</span> <span class="pl-c1">true</span>,
   value<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>one<span class="pl-pds">'</span></span>
 });</pre></div>
@@ -240,7 +244,7 @@
 
 <p>View will be <code>Then one!</code>. </p>
 
-<p>This is happens becouse Monkberry does not stores variables passed to <code>update</code> function, it stores only DOM nodes.
+<p>This is happens because Monkberry does not stores variables passed to <code>update</code> function, it stores only DOM nodes.
 Monkberry will update only one part of <code>if</code>/<code>else</code>.</p>
 </blockquote>
 
@@ -277,21 +281,11 @@ Monkberry will update only one part of <code>if</code>/<code>else</code>.</p>
 <h3>
 <a id="default-values" class="anchor" href="#default-values" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Default values</h3>
 
-<p>Render of view contains two phase: node creation and update of node contents with data.</p>
-
-<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> view <span class="pl-k">=</span> <span class="pl-smi">monkberry</span>.<span class="pl-en">render</span>(<span class="pl-s"><span class="pl-pds">'</span>template<span class="pl-pds">'</span></span>, data);
-<span class="pl-c">// Equals to:</span>
-<span class="pl-k">var</span> view <span class="pl-k">=</span> <span class="pl-smi">monkberry</span>.<span class="pl-en">render</span>(<span class="pl-s"><span class="pl-pds">'</span>template<span class="pl-pds">'</span></span>);
-<span class="pl-smi">view</span>.<span class="pl-en">update</span>(data);</pre></div>
-
-<p>Some times data for view does not available and it's use full to place come data as default.
-Best way to do it is use logical <em>OR</em> operator <code>||</code>.</p>
-
 <div class="highlight highlight-text-html-twig"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>foo {{ <span class="pl-smi">modify</span> || <span class="pl-s"><span class="pl-pds">'</span>baz<span class="pl-pds">'</span></span> }}<span class="pl-pds">"</span></span>&gt;
     {{ <span class="pl-smi">content</span> || <span class="pl-s"><span class="pl-pds">"</span>No content<span class="pl-pds">"</span></span> }}
 &lt;/<span class="pl-ent">div</span>&gt;</pre></div>
 
-<p>In this case on first phase of render view will be filled with default data:</p>
+<p>View rendered without data will be filled with default data:</p>
 
 <div class="highlight highlight-text-html-twig"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>foo baz<span class="pl-pds">"</span></span>&gt;
     No content
@@ -310,13 +304,13 @@ Best way to do it is use logical <em>OR</em> operator <code>||</code>.</p>
 
 <p>To define that filter:</p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-c1">monkberry.filters</span>.<span class="pl-en">upper</span> <span class="pl-k">=</span> <span class="pl-k">function</span> (<span class="pl-smi">text</span>) {
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">Template</span>.<span class="pl-smi">filters</span>.<span class="pl-en">upper</span> <span class="pl-k">=</span> <span class="pl-k">function</span> (<span class="pl-smi">text</span>) {
   <span class="pl-k">return</span> <span class="pl-smi">text</span>.<span class="pl-c1">toUpperCase</span>();
 };</pre></div>
 
 <p>Also Monkberry understand parameters for filters:</p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-c1">monkberry.filters</span>.<span class="pl-en">replace</span> <span class="pl-k">=</span> <span class="pl-k">function</span> (<span class="pl-smi">text</span>, <span class="pl-smi">from</span>, <span class="pl-smi">to</span>) {
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">template</span>.<span class="pl-smi">filters</span>.<span class="pl-en">replace</span> <span class="pl-k">=</span> <span class="pl-k">function</span> (<span class="pl-smi">text</span>, <span class="pl-k">from</span>, <span class="pl-smi">to</span>) {
   <span class="pl-k">return</span> <span class="pl-smi">text</span>.<span class="pl-c1">replace</span>(<span class="pl-k">from</span>, to);
 };</pre></div>
 
@@ -328,41 +322,23 @@ Best way to do it is use logical <em>OR</em> operator <code>||</code>.</p>
 
 <p>That expression will be compiled to next JavaScript:</p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-en">upper</span>(<span class="pl-c1">replace</span>(<span class="pl-en">lower</span>(text),<span class="pl-sr"> <span class="pl-pds">/</span><span class="pl-c1">...</span><span class="pl-pds">/</span></span>, <span class="pl-s"><span class="pl-pds">'</span>$1<span class="pl-pds">'</span></span>));</pre></div>
+<div class="highlight highlight-source-js"><pre><span class="pl-en">upper</span>(<span class="pl-en">replace</span>(<span class="pl-en">lower</span>(text),<span class="pl-sr"> <span class="pl-pds">/</span><span class="pl-c1">...</span><span class="pl-pds">/</span></span>, <span class="pl-s"><span class="pl-pds">'</span>$1<span class="pl-pds">'</span></span>));</pre></div>
 
 <p>Filters can be used in expressions, <code>if</code> and <code>for</code> statements.</p>
 
 <h3>
 <a id="custom-tags" class="anchor" href="#custom-tags" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Custom tags</h3>
 
-<p>Any template mounted to Monkberry can be called as custom tag. </p>
+<p>Custom tag template <code>greet.monk</code>:</p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-smi">monkberry</span>.<span class="pl-en">mount</span>(<span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>./views/block.html<span class="pl-pds">'</span></span>));</pre></div>
-
-<p>Inside another template possible to insert that <code>block</code> templace as custom tag:</p>
-
-<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">div</span>&gt;
-  &lt;<span class="pl-ent">block</span>/&gt;
+<div class="highlight highlight-text-html-twig"><pre>&lt;<span class="pl-ent">div</span>&gt;
+  {{ <span class="pl-smi">value</span> }}, {{ <span class="pl-smi">name</span> }}!
 &lt;/<span class="pl-ent">div</span>&gt;</pre></div>
 
-<p>One file can contains several definitions of custom tags:</p>
+<p>To render that custom tag in another template:</p>
 
-<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">my</span><span class="pl-e">-tag</span>&gt;
-  ...
-&lt;/<span class="pl-ent">my</span><span class="pl-e">-tag</span>&gt;
-&lt;<span class="pl-ent">my</span><span class="pl-e">-second-tag</span>&gt;
-  ...
-&lt;/<span class="pl-ent">my</span><span class="pl-e">-second-tag</span>&gt;</pre></div>
-
-<p>Custom tags may contains variables:</p>
-
-<div class="highlight highlight-text-html-twig"><pre>&lt;<span class="pl-ent">greet</span>&gt;
-  {{ <span class="pl-smi">value</span> }}, {{ <span class="pl-smi">name</span> }}!
-&lt;/<span class="pl-ent">greet</span>&gt;</pre></div>
-
-<p>To render that custom tag, specify variables as attributes:</p>
-
-<div class="highlight highlight-text-html-twig"><pre>&lt;<span class="pl-ent">greet</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>Hello<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>world<span class="pl-pds">"</span></span>&gt;
+<div class="highlight highlight-text-html-twig"><pre>{% <span class="pl-k">import</span> <span class="pl-smi">greet</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>./greet.monk<span class="pl-pds">'</span></span> %}
+&lt;<span class="pl-ent">greet</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>Hello<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>world<span class="pl-pds">"</span></span>&gt;
 &lt;<span class="pl-ent">greet</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>Hello<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>{{ <span class="pl-smi">user</span>.<span class="pl-smi">name</span> }}<span class="pl-pds">"</span></span>&gt;</pre></div>
 
 <h3>
@@ -373,7 +349,7 @@ The properties of the object that you pass in are copied onto the node's attribu
 
 <div class="highlight highlight-text-html-twig"><pre>&lt;<span class="pl-ent">input</span> {{...attr}}/&gt;</pre></div>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> view <span class="pl-k">=</span> <span class="pl-smi">monkberry</span>.<span class="pl-en">render</span>(<span class="pl-s"><span class="pl-pds">'</span>template<span class="pl-pds">'</span></span>, {attr<span class="pl-k">:</span> {
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">view</span>.<span class="pl-en">update</span>({attr<span class="pl-k">:</span> {
   id<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>foo<span class="pl-pds">'</span></span>, 
   value<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>baz<span class="pl-pds">'</span></span>
 }});</pre></div>
@@ -401,12 +377,16 @@ The properties of the object that you pass in are copied onto the node's attribu
 
 <p>It is possible to require template within another template. </p>
 
-<div class="highlight highlight-text-html-twig"><pre>{% <span class="pl-k">import</span> <span class="pl-s"><span class="pl-pds">'</span>./path/to/template.html<span class="pl-pds">'</span></span> %}
+<div class="highlight highlight-text-html-twig"><pre>{% <span class="pl-k">import</span> <span class="pl-smi">Component</span> <span class="pl-s"><span class="pl-pds">'</span>./Component.monk<span class="pl-pds">'</span></span> %}
 
-    &lt;<span class="pl-ent">template</span>/&gt;
+    &lt;<span class="pl-ent">Component</span>/&gt;
 </pre></div>
 
-<p>Import statement will require that template and automatically mount it to monkberry.</p>
+<p>Also it's possible to include any JS file or module:</p>
+
+<div class="highlight highlight-text-html-twig"><pre>{% <span class="pl-k">import</span> <span class="pl-smi">upperCase</span> <span class="pl-s"><span class="pl-pds">'</span>upper-case<span class="pl-pds">'</span></span> %}
+// ...
+{{ upperCase(<span class="pl-smi">name</span>) }}</pre></div>
 
 <h3>
 <a id="event-handling" class="anchor" href="#event-handling" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Event Handling</h3>
@@ -414,15 +394,15 @@ The properties of the object that you pass in are copied onto the node's attribu
 <p>There are a few ways to deal with event handling in Monkberry.
 Add event listener to node directly: </p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-smi">view</span>.<span class="pl-en">querySelector</span>(<span class="pl-s"><span class="pl-pds">'</span>.button<span class="pl-pds">'</span></span>).<span class="pl-en">addEventListener</span>(<span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> (<span class="pl-smi">event</span>) {
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">view</span>.<span class="pl-en">querySelector</span>(<span class="pl-s"><span class="pl-pds">'</span>.button<span class="pl-pds">'</span></span>).<span class="pl-en">addEventListener</span>(<span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> (<span class="pl-c1">event</span>) {
     <span class="pl-k">...</span>
 });</pre></div>
 
-<p>But this is difficult when dealing with conditions and loops (it's is possible to solve if using <a href="#wrappers">wrappers</a>).</p>
+<p>But this is difficult when dealing with conditions and loops.</p>
 
 <p>Better approach is to use <a href="https://github.com/monkberry/events">event delegating</a>.</p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-smi">view</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>.button<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> (<span class="pl-smi">event</span>) {
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">view</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>.button<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> (<span class="pl-c1">event</span>) {
     <span class="pl-k">...</span>
 });</pre></div>
 
@@ -439,35 +419,13 @@ Or if using translation function like this: <code>{{ __('greeting') + userName }
 
 <p>To speedup render Monkberry can prerender DOM nodes to use them in future.</p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-smi">monkberry</span>.<span class="pl-en">prerender</span>(<span class="pl-s"><span class="pl-pds">'</span>template<span class="pl-pds">'</span></span>, <span class="pl-c1">10</span>); <span class="pl-c">// Preprender template 10 times.</span></pre></div>
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">Monkberry</span>.<span class="pl-en">prerender</span>(Template, <span class="pl-c1">10</span>); <span class="pl-c">// Preprender template 10 times.</span></pre></div>
 
 <p>Then next <code>render</code> call will use one of these prerendered views:</p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-smi">monkberry</span>.<span class="pl-en">render</span>(<span class="pl-s"><span class="pl-pds">'</span>template<span class="pl-pds">'</span></span>, {<span class="pl-k">...</span>}); <span class="pl-c">// Will use already created DOM nodes.</span></pre></div>
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">Monkberry</span>.<span class="pl-en">render</span>(Template, node); <span class="pl-c">// Will use already created DOM nodes.</span></pre></div>
 
 <p>This is very usefull to do then browser waiting some xhr request.</p>
-
-<p>To get info about prerendered template in runtime, use <code>monkberry.pool.store</code>.</p>
-
-<h3>
-<a id="wrappers" class="anchor" href="#wrappers" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Wrappers</h3>
-
-<p>Every template in Monkbeery when rendered can be "wrapped" by function.</p>
-
-<p>For example we have a template <code>logo.html</code>:</p>
-
-<div class="highlight highlight-text-html-twig"><pre>&lt;<span class="pl-ent">div</span>&gt;
-  &lt;<span class="pl-ent">i</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>svg-icon<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">i</span>&gt;
-&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
-
-<p>And we want to insert SVG nodes inside <code>i</code> tag on render. This is can be done via wrappers:</p>
-
-<div class="highlight highlight-source-js"><pre><span class="pl-c1">monkberry.wrappers</span>.<span class="pl-en">logo</span> <span class="pl-k">=</span> <span class="pl-k">function</span> (<span class="pl-smi">view</span>) {
-  <span class="pl-smi">view</span>.<span class="pl-en">querySelector</span>(<span class="pl-s"><span class="pl-pds">'</span>.svg-icon<span class="pl-pds">'</span></span>).<span class="pl-c1">appendChild</span>(svgIconNodes);
-  <span class="pl-k">return</span> view;
-};</pre></div>
-
-<p>Wrappers usefull to manipulate view's nodes, adding event listeners and a lot of other staff.</p>
 
 <h3>
 <a id="transforms" class="anchor" href="#transforms" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Transforms</h3>
@@ -483,22 +441,6 @@ Example of transform which trim whitespaces: <a href="https://github.com/monkber
 
 <span class="pl-k">var</span> compiler <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Compiler</span>();
 <span class="pl-smi">compiler</span>.<span class="pl-smi">transforms</span>.<span class="pl-smi">custom</span> <span class="pl-k">=</span> myTransform;</pre></div>
-
-<h3>
-<a id="parsers" class="anchor" href="#parsers" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Parsers</h3>
-
-<p>Now Monkberry support only one type of parser, mustage like (<code>monk</code> named). But it can be extender with custom parsers. Every parser must return valid <a href="https://github.com/monkberry/parser/blob/master/src/ast.js">AST</a> tree.</p>
-
-<div class="highlight highlight-source-js"><pre><span class="pl-k">import</span> { <span class="pl-smi">Compiler</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>monkberry<span class="pl-pds">'</span></span>;
-<span class="pl-k">import</span> { <span class="pl-smi">myParser</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>./parser<span class="pl-pds">'</span></span>;
-
-<span class="pl-k">var</span> compiler <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Compiler</span>();
-<span class="pl-smi">compiler</span>.<span class="pl-smi">parsers</span>.<span class="pl-smi">myParser</span> <span class="pl-k">=</span> myTransform;
-
-<span class="pl-smi">compiler</span>.<span class="pl-en">addSource</span>(<span class="pl-s"><span class="pl-pds">'</span>template<span class="pl-pds">'</span></span>, code, <span class="pl-s"><span class="pl-pds">'</span>myParser<span class="pl-pds">'</span></span>);
-<span class="pl-smi">compiler</span>.<span class="pl-en">addSource</span>(<span class="pl-s"><span class="pl-pds">'</span>another<span class="pl-pds">'</span></span>, code, <span class="pl-s"><span class="pl-pds">'</span>monk<span class="pl-pds">'</span></span>);
-
-<span class="pl-k">var</span> output <span class="pl-k">=</span> <span class="pl-smi">compiler</span>.<span class="pl-c1">compile</span>();</pre></div>
 
 <h3>
 <a id="unsafe" class="anchor" href="#unsafe" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Unsafe</h3>
@@ -525,56 +467,20 @@ Improper use of the <em>unsafe</em> statement can open you up to a <a href="http
 <p>Monkberry API strictly follows <a href="http://semver.org">semantic versioning</a>.  </p>
 
 <h3>
-<a id="monkberry" class="anchor" href="#monkberry" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Monkberry</h3>
-
-<p>Then using Monkberry via <code>require('monkberry')</code> single instance returned. 
-To create a new Monkberry object or extend prototype use <code>monkberry.constructor</code>.</p>
+<a id="monkberry-1" class="anchor" href="#monkberry-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Monkberry</h3>
 
 <h4>
-<a id="monkberryrendername-values-nocache" class="anchor" href="#monkberryrendername-values-nocache" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>monkberry.render(name, [values, [noCache]])</h4>
+<a id="monkberryrendertemplate-node-options" class="anchor" href="#monkberryrendertemplate-node-options" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Monkberry.render(template, node, options)</h4>
 
-<p>Generates DOM nodes, and returns new <code>Monkberry.View</code> instance.</p>
-
-<ul>
-<li>
-<code>name</code>: <code>string</code> - name of template.</li>
-<li>
-<code>values</code>: <code>Object</code> - Optional. Data to update view.</li>
-<li>
-<code>noCache</code>: <code>boolean</code> - Optional. Use or not cached view from pool.</li>
-</ul>
+<p>Render template, and returns new <code>Monkberry</code> instance.</p>
 
 <h4>
-<a id="monkberryprerendername-times" class="anchor" href="#monkberryprerendername-times" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>monkberry.prerender(name, times)</h4>
+<a id="monkberryprerendertemplate-times" class="anchor" href="#monkberryprerendertemplate-times" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Monkberry.prerender(template, times)</h4>
 
 <p>Generates views for future calls of render method.</p>
 
-<ul>
-<li>
-<code>name</code>: <code>string</code> - name of template.</li>
-<li>
-<code>times</code>: <code>number</code> - how many times.</li>
-</ul>
-
 <h4>
-<a id="monkberrymounttemplates" class="anchor" href="#monkberrymounttemplates" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>monkberry.mount(templates)</h4>
-
-<p>Add template to monkberry.</p>
-
-<ul>
-<li>
-<code>templates</code>: <code>Object</code> - monkberry compiled templates.</li>
-</ul>
-
-<p>Example:</p>
-
-<div class="highlight highlight-source-js"><pre><span class="pl-smi">monkberry</span>.<span class="pl-en">mount</span>(<span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>./template.monk<span class="pl-pds">'</span></span>));</pre></div>
-
-<h3>
-<a id="monkberryview" class="anchor" href="#monkberryview" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Monkberry.View</h3>
-
-<h4>
-<a id="viewappendtotonode" class="anchor" href="#viewappendtotonode" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>view.appendTo(toNode)</h4>
+<a id="monkberryprototypeappendtotonode" class="anchor" href="#monkberryprototypeappendtotonode" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Monkberry.prototype.appendTo(toNode)</h4>
 
 <p>Append rendered view nodes to specified node.</p>
 
@@ -584,7 +490,7 @@ To create a new Monkberry object or extend prototype use <code>monkberry.constru
 </ul>
 
 <h4>
-<a id="viewinsertbeforetonode" class="anchor" href="#viewinsertbeforetonode" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>view.insertBefore(toNode)</h4>
+<a id="monkberryprototypeinsertbeforetonode" class="anchor" href="#monkberryprototypeinsertbeforetonode" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Monkberry.prototype.insertBefore(toNode)</h4>
 
 <p>Insert rendered view nodes before specified node.</p>
 
@@ -594,13 +500,13 @@ To create a new Monkberry object or extend prototype use <code>monkberry.constru
 </ul>
 
 <h4>
-<a id="viewcreatedocument" class="anchor" href="#viewcreatedocument" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>view.createDocument()</h4>
+<a id="monkberryprototypecreatedocument" class="anchor" href="#monkberryprototypecreatedocument" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Monkberry.prototype.createDocument()</h4>
 
 <p>Return view's nodes. Note what if your template contains more then one root element, <code>createDocument</code> function will 
 return <code>DocumentFragment</code> what contains all these nodes. If you have only one root node, it will be returned as is.</p>
 
 <h4>
-<a id="viewupdatedata" class="anchor" href="#viewupdatedata" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>view.update(data)</h4>
+<a id="monkberryprototypeupdatedata" class="anchor" href="#monkberryprototypeupdatedata" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Monkberry.prototype.update(data)</h4>
 
 <p>Update rendered template with new data. You can specify only part of data to update or update entire data.</p>
 
@@ -616,19 +522,12 @@ return <code>DocumentFragment</code> what contains all these nodes. If you have 
     content<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>...<span class="pl-pds">'</span></span>
 };
 
-<span class="pl-k">var</span> view <span class="pl-k">=</span> <span class="pl-smi">monkberry</span>.<span class="pl-en">render</span>(<span class="pl-s"><span class="pl-pds">'</span>...<span class="pl-pds">'</span></span>, data);
-
 <span class="pl-smi">view</span>.<span class="pl-en">update</span>({title<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Title #2<span class="pl-pds">'</span></span>});</pre></div>
 
 <h4>
-<a id="viewremoveforce" class="anchor" href="#viewremoveforce" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>view.remove([force])</h4>
+<a id="monkberryprototyperemove" class="anchor" href="#monkberryprototyperemove" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Monkberry.prototype.remove([)</h4>
 
 <p>Remove view's nodes from document, and puts it to pool for future reuse.</p>
-
-<ul>
-<li>
-<code>force</code>: <code>boolean</code> - Optional. False be default. If true, removed view will not be putted into pool.</li>
-</ul>
 
 <h4>
 <a id="viewqueryselectorquery" class="anchor" href="#viewqueryselectorquery" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>view.querySelector(query)</h4>
@@ -673,14 +572,21 @@ return <code>DocumentFragment</code> what contains all these nodes. If you have 
 </code></pre>
 
 <h2>
-<a id="benchmarks" class="anchor" href="#benchmarks" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Benchmarks</h2>
-
-<p>Benchmarks covers a few use cases, and compare Monkberry with <a href="https://facebook.github.io/react/">React</a> and <a href="https://github.com/KosyanMedia/temple">temple-wat</a>.
-Also it's contains real site code for soft/hard update tests.</p>
+<a id="plugins" class="anchor" href="#plugins" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Plugins</h2>
 
 <ul>
-<li><a href="http://monkberry.github.io/benchmark/">monkberry.github.io/benchmark</a></li>
-<li><a href="https://github.com/monkberry/benchmark">github.com/monkberry/benchmark</a></li>
+<li><a href="https://atom.io/packages/language-monkberry">Atom Package</a></li>
+<li><a href="https://github.com/monkberry/language-monkberry">Sublime Text Package</a></li>
+</ul>
+
+<h2>
+<a id="benchmarks" class="anchor" href="#benchmarks" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Benchmarks</h2>
+
+<p>Benchmarks covers a few use cases, and compare Monkberry with <a href="https://facebook.github.io/react/">React</a> and innerHTML.
+Also it's contains real site code for tests.</p>
+
+<ul>
+<li><a href="http://monkberry.github.io/benchmark/">monkberry.js.org/benchmark</a></li>
 </ul>
 
       <footer class="site-footer">
