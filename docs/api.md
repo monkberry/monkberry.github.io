@@ -8,7 +8,7 @@ Returns new `Monkberry` template instace, a view.
 
 * `template` — `Monkberry` - template object
 * `node` — `Element` - DOM node where to attach rendered template
-* `options` — `{noCache: Boolean, context: Object}`
+* `options` — `{noCache: Boolean, context: Object, filters: Object}`
 
 ```js
 const view = Monkberry.render(Template, document.body);
