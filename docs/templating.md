@@ -264,6 +264,27 @@ Also it's can be used as filters as well:
 <input value={{ value | upperCase }}>
 ```
 
+### Unsafe
+
+Monkberry escape all inserted variables by default. But if some times you want to insert 
+some HTML template via variable you can you _unsafe_ statement which is using `innerHTML`. 
+Improper use of the _unsafe_ statement can open you up to a [cross-site scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting) attack. 
+
+```twig
+{% unsafe '<a href="XSS">...</a>' %}
+{% unsafe html %}
+```
+
+### Comments
+
+You can use standard html comments.
+ 
+```twig
+<!-- Comment does here -->
+```
+
+Comments will be cut out from template. 
+
 In next chapter we describe how to use [event handling](event-handling.md) with Monkberry.
 
 [Next →](event-handling.md)
