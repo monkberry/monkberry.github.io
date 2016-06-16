@@ -264,6 +264,6 @@ Also it's can be used as filters as well:
 <input value={{ value | upperCase }}>
 ```
 
-In next chapter we describe how to use [components](components.md) with Monkberry.
+In next chapter we describe how to use [event handling](event-handling.md) with Monkberry.
 
-[Next →](components.md)
+[Next →](event-handling.md)
