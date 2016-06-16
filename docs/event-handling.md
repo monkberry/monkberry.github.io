@@ -15,6 +15,8 @@ node.addEventListener('click', (event) => { ... });
 
 But this can be difficult then using ifs and for, because nodes can appear and disappear from view.
 
+## Event delegating
+
 Better solution is using event delegating, install [monkberry-events](https://github.com/monkberry/events):
 
 ```bash
