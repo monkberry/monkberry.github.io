@@ -22,6 +22,14 @@ Prerepder template for future usage.
 * `template` — `Monkberry` - template object
 * `times` — `Number` - how many times
 
+```js
+Monkberry.prerender(Template, 10);
+
+// Will return view with already created DOM nodes.
+const view = Monkberry.render(Template, document.body);
+```
+
+This is very useful, then you can prerender templates while waiting xhr response, for example.
 
 ### `Monkberry.prototype.appendTo(toNode)`
 
