@@ -40,7 +40,7 @@ now you can use it inside another templates:
 
 <ol> 
     {% for todo of todos %}
-			  <ToDo todo={{ todo }}/>
+        <ToDo todo={{ todo }}/>
     {% endfor %}
 </ol>
 ```
