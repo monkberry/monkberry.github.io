@@ -189,7 +189,7 @@ Describe custom tag in separate template, for example `todo.monk`:
 and then import and use it in another template:
 
 ```html
-import Todo from 'todo.monk';
+{% import Todo from 'todo.monk' %}
 
 <Todo complete={{ complete }} text={{ text }}/>
 <Todo complete={{ true }} text="with static text"/>
