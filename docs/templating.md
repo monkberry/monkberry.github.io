@@ -188,7 +188,7 @@ Describe custom tag in separate template, for example `todo.monk`:
 
 and then import and use it in another template:
 
-```html
+```twig
 {% import Todo from 'todo.monk' %}
 
 <Todo complete={{ complete }} text={{ text }}/>
