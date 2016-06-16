@@ -2,7 +2,7 @@
 
 You can add event listener directly on node by getting node reference with [querySelector]() method of view instance. 
 
-```twig
+```js
 import Monkberry from 'monkberry';
 import Template from './monkberry.monk';
 
