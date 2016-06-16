@@ -141,18 +141,18 @@ To define that filter:
 ```js
 import Template from './template.monk';
 
-Template.filters.upper = function (text) {
-  return text.toUpperCase();
+const filters = {
+  upper: (text) => text.toUpperCase()
 };
 
-const view = Monkberry.render(Template, document.body);
+const view = Monkberry.render(Template, document.body, {filters);
 ```
 
 Also Monkberry understand parameters for filters:
 
 ```js
-Template.filters.replace = function (text, from, to) {
-  return text.replace(from, to);
+const filters = {
+  replace: (text, from, to) => text.replace(from, to)
 };
 ```
 
