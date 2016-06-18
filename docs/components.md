@@ -50,4 +50,4 @@ now you can use it inside another templates:
 Full example of this todo app with components with can find on [monkberry/todomvc](https://github.com/monkberry/todomvc). 
 This example uses [redux](http://redux.js.org/index.html) for manipulating state.
 
-[Next →](api.md)
+[Next →](directives.md)
