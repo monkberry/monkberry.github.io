@@ -37,4 +37,16 @@ view.on('click', 'div', (event) => { ... });
 
 Next, we describe how to use the [component](components.md) approach in Monkberry.
 
+## Event listeners
+
+Also there is another aproach using [directives](directives.md).
+
+```twig
+<div :onclick={{ this.handleClick }}>
+  ...
+</div>
+```
+
+All aviable event listeners in [monkberry-directives](https://github.com/monkberry/directives) package.
+
 [Next →](components.md)
