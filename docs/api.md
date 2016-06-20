@@ -6,13 +6,20 @@ Monkberry API strictly follows [semantic versioning](http://semver.org).
 
 Returns new `Monkberry` template instace, a view.
 
-* `template` — `Monkberry` - template object
-* `node` — `Element` - DOM node where to attach rendered template
-* `options` — `{noCache: Boolean, context: Object, filters: Object, directives: Object}`
+* `template` — `Monkberry` template object,
+* `node` — `Element` DOM node where to attach rendered template,
+* `options` — `Object` optional options.
 
 ```js
 const view = Monkberry.render(Template, document.body);
 ```
+
+Options object:
+
+* `noCache` — `Boolean` use pool of prerendered templates or not, 
+* `context` — `Object` what pass throw every component hierarhy, 
+* `filters` — `Object` filters to template,
+* `directives` — `Object` of directives.
 
 
 ### `Monkberry.prerender(template, times)`
