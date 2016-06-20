@@ -1,0 +1,7 @@
+* [Getting Started](getting-started.md)
+* [Installation](installation.md)
+* [Templating](templating.md)
+* [Event handling](event-handling.md)
+* [Components](components.md)
+* [Directives](directives.md)
+* [API Reference](api.md)
