@@ -2,9 +2,9 @@
 
 Let's start with creating a simple todo app.
 
-> First, you need to install Monkberry `npm install monkberry --save` and then integrate into your build system. Monkberry supports webpack, browserify and can be used as cli tool. Read more on [installation](installation.md) page. 
+> First, you need to install Monkberry `npm install monkberry --save` and then integrate it into your build system. Monkberry supports webpack, browserify and can be used as cli tool. Read more on [installation](installation.md) page. 
 
-Create file `template.monk` with next code:
+Create file `template.monk` with the following code:
 
 ```twig
 <div>
@@ -12,7 +12,7 @@ Create file `template.monk` with next code:
 </div>
 ```
 
-Inside `{{` and `}}` can be placed any variable or JavaScript expression. Monkberry is **safe**. We are not generating HTML strings so XSS protection is the default. `template.monk` will be compiled to JavaScript code like this:
+Inside `{{` and `}}` we can place any variable or JavaScript expression. Monkberry is **safe**. We are not generating HTML strings so XSS protection is the default. `template.monk` will be compiled to JavaScript code like this:
 
 ```js
 var div1 = document.createElement('div');
@@ -26,13 +26,13 @@ import Monkberry from 'monkberry';
 import Template from 'monkberry.monk';
 
 const view = Monkberry.render(Template, document.body);
-view.update({name: 'Wolrd'});
+view.update({name: 'World'});
 ```
 
 Result:
 
 ```
-Hello Wolrd!
+Hello World!
 ```
 
 ## Loops
@@ -73,7 +73,7 @@ view.update(state);
 
 ## Ifs
 
-Now we want to strikethrough todos what already completed.
+Now we want to strikethrough todos that are already completed.
 
 ```js
 const state = {
@@ -99,9 +99,9 @@ const state = {
 </ol>
 ```
 
-## Custor tags
+## Custom tags
 
-Then building big, complex apps it's very useful to separate templates to smaller parts. In Monkberry you can achieve it with custom tags. Let's separate our todo template into two.
+When building big, complex apps it's very useful to break templates down into smaller parts. In Monkberry you can achieve this with custom tags. Let's divide our todo template into two parts.
 
 One with todo itself `todo.monk`:
 
@@ -113,7 +113,7 @@ One with todo itself `todo.monk`:
 {% endif %}
 ```
 
-Now we can use in inside our `template.monk`:
+Now we can use it inside our `template.monk`:
 
 ```twig
 {% import Todo from `todo.monk` %}
@@ -129,7 +129,7 @@ Now we can use in inside our `template.monk`:
 
 That's it! So simple.
 
-Now you now basic consepts of Monkberry, but there is much more.
+Now you know basic concepts of Monkberry, but there is much more.
 
 Continue exploring Monkberry on [templating docs](templating.md).
 

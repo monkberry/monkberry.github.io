@@ -1,27 +1,27 @@
 # Directives
 
-A what? A directives? Oh no. Do not panic, directive a little helper what can simplify a lot of tasks.
+A what? A directives? Oh no. Do not panic, directive is a little helper that can simplify a lot of tasks.
 
-Directive is simple mark on DOM nodes and provide a few hook functions:
+Directive is a simple mark on DOM nodes that provides a few hook functions:
 
-* `bind` — called when the node with directive is appers in document,
+* `bind` — called when the node with directive appears in document,
 * `update` — called when a value of directive is changed,
-* `unbind` — called when the node removed from document.
+* `unbind` — called when the node is removed from document.
 
-Every directive must start with `:` symbol, this mark help parser to understand what this is not simple attribute but directive:
+Every directive must start with `:` symbol, this mark help parser to understand that this is not a simple attribute but directive:
 
 ```twig
 <div :directive={{ value }}>
 ```
 
-Also it's possible to ommit value, or set static value:
+Also it's possible to omit value, or set static value:
 
 ```twig
 <div :directive>
 <div :directive="123">
 ```
 
-Let's create directive what will be hinding our node with `style="display: none"` attribute. Create a class what decribes this:
+Let's create directive that will be hiding our node with `style="display: none"` attribute. Create a class that describes this:
 
 ```js
 class Show {
@@ -55,7 +55,7 @@ const directives = {show};
 const view = Monkberry.render(Template, document.body, {directives});
 ```
 
-and now we can use owr directive in template:
+and now we can use our directive in template:
 
 ```twig
 <div :show={{ visible }}>
@@ -64,7 +64,7 @@ and now we can use owr directive in template:
 On state change `div` will be shown or hidden:
 
 ```js
-view.update({visible: true}); // Show
+view.update({visible: true}); // show
 view.update({visible: false}); // hide
 ```
 

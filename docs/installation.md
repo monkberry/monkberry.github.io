@@ -72,7 +72,7 @@ Example:
 monkberry views/*.monk --source-map --output view.js
 ```
 
-Now include it to your page with [monkberry.js](https://github.com/monkberry/monkberry/blob/master/monkberry.js):
+Now include it in your page with [monkberry.js](https://github.com/monkberry/monkberry/blob/master/monkberry.js):
 
 ```html
 <script src="monkberry.js"></script>
@@ -87,13 +87,13 @@ You can use Monkberry from CDN:
 <script src="https://cdn.jsdelivr.net/monkberry/latest/monkberry.js"></script>
 ```
 
-Note what you still need to precompile your views to use it.
+Note that you still need to precompile your views to use it.
 
-Over versions aviable on [jsDelivr.com](https://www.jsdelivr.com/projects/monkberry) CDN.
+Other versions available on [jsDelivr.com](https://www.jsdelivr.com/projects/monkberry) CDN.
 
 ## Standalone
 
-If you want only play with Monkberry and do not install it, you can use [monkberry-standalone](https://github.com/monkberry/standalone). 
+If you only want to play with Monkberry and do not need to install it, you can use [monkberry-standalone](https://github.com/monkberry/standalone). 
 This package includes Monkberry runtime and compiler. 
 
-You can play with Monkberry in this [fiddle](https://jsfiddle.net/medv/z8pzsdyv/).
+You can also play with Monkberry in this [fiddle](https://jsfiddle.net/medv/z8pzsdyv/).

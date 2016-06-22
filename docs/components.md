@@ -1,6 +1,6 @@
 # Components
 
-Monkberry compiles template into JavaScript classes, so you can extend them. 
+Monkberry compiles templates into JavaScript classes, so you can extend them. 
 
 ```js
 import ToDo from './ToDo.monk';
@@ -33,7 +33,7 @@ export default class extends Todo {
 }
 ```
 
-now you can use it inside another templates:
+Now you can use it inside of another template:
 
 ```twig
 {% import ToDo from './ToDo' %}
@@ -45,9 +45,9 @@ now you can use it inside another templates:
 </ol>
 ```
 
-> Note what in this template we impoerted `./ToDo`, not `./ToDo.monk`. 
+> Note that in this template we import `./ToDo`, not `./ToDo.monk`. 
 
-Full example of this todo app with components with can find on [monkberry/todomvc](https://github.com/monkberry/todomvc). 
+Full example of this todo app with all components can be found on [monkberry/todomvc](https://github.com/monkberry/todomvc). 
 This example uses [redux](http://redux.js.org/index.html) for manipulating state.
 
 [Next →](directives.md)

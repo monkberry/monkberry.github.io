@@ -13,7 +13,7 @@ const node = view.querySelector('div');
 node.addEventListener('click', (event) => { ... });
 ```
 
-But this can be difficult then using ifs and for, because nodes can appear and disappear from view.
+But this can be difficult when using ifs and for, because nodes can appear and disappear from view.
 
 ## Event delegating
 
@@ -23,7 +23,7 @@ Better solution is using event delegating, install [monkberry-events](https://gi
 npm install monkberry-events --save
 ```
 
-and import it once in your project. It will add Monkberry two more methods: `on` and `off`.
+and import it once in your project. It will add two more methods on Monkberry instances: `on` and `off`.
 
 ```js
 import 'monkberry-events';
@@ -47,6 +47,6 @@ Also there is another aproach using [directives](directives.md).
 </div>
 ```
 
-All aviable event listeners in [monkberry-directives](https://github.com/monkberry/directives) package.
+See all available event listeners in [monkberry-directives](https://github.com/monkberry/directives) package.
 
 [Next →](components.md)

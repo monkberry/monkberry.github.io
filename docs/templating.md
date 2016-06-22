@@ -32,7 +32,7 @@ Any number of variables in `if`:
 {% endif %}
 ```
 
-> Note what Monkberry update only one of `if`/`else` block.
+> Note that Monkberry updates only one of `if`/`else` block.
 > ```twig
 > {% if cond %}
 >     Then {{ value }}!
@@ -47,27 +47,27 @@ Any number of variables in `if`:
 >   value: 'one'
 > });
 > ```
-> View will be `Then one!`. When if update view:
+> View will be `Then one!`. Then if we update view:
 > ```js
 > view.update({
 >   cond: false,
 >   value: 'two'
 > });
 > ```
-> View will be `Else two!`. But if update only `check`, variable of then part will be same as before.
+> View will be `Else two!`. But if we now update only `cond`, variable of "then" part will be same as before.
 > ```js
 > view.update({
 >   cond: true
 > });
 > ```
-> View will be `Then one!`. 
+> View will be `Then one!` (instead of `Then two!`).
 >
-> This is happens becouse Monkberry does not stores variables passed to `update` function, it stores only DOM nodes.
+> This happens because Monkberry doesn't store variables passed to `update` function, it stores only DOM nodes.
 > Monkberry will update only one part of `if`/`else`.
 
 ### For
 
-Monkberry can loop other **arrays** and **objects** as well. 
+Monkberry can loop over **arrays** and **objects** as well. 
 
 ```twig
 {% for array %}
@@ -75,7 +75,7 @@ Monkberry can loop other **arrays** and **objects** as well.
 {% endfor %}
 ```
 
-In this form, body of `for` has access only for variables iterating on.
+In this form, the body of `for` has access only to variables which `for` is iterating on.
 
 ```js
 view.update({
@@ -104,9 +104,9 @@ Also key can be specified.
 
 ### Default values
 
-Render of view contains two phase: node creation and update of node content with data.
-Some times data for view does not available and it's use full to place come data as default.
-Best way to do it is use logical _OR_ operator `||`.
+The view rendering process consists of two phases: first we create the node and then we update the node content with data.
+Sometimes the data for the view is not available at the time of rendering, and we have to specify default values.
+The best way to do it is to use logical _OR_ operator `||`.
 
 ```twig
 <div class="foo {{ modify || 'baz' }}">
@@ -114,7 +114,7 @@ Best way to do it is use logical _OR_ operator `||`.
 </div>
 ```
 
-In this case on template render view will be filled with default data:
+In this case on template render the view will be filled with default data:
 
 ```twig
 <div class="foo baz">
@@ -122,7 +122,7 @@ In this case on template render view will be filled with default data:
 </div>
 ```
 
-Note if you will use some variable in right side of _OR_ operator, what can't be used as default data.
+Note that if you use any variable on the right side of _OR_ operator, that can't be used as default data.
   
 ```twig
 {{ content || "No content" + foo }}
@@ -145,10 +145,10 @@ const filters = {
   upper: (text) => text.toUpperCase()
 };
 
-const view = Monkberry.render(Template, document.body, {filters);
+const view = Monkberry.render(Template, document.body, filters);
 ```
 
-Also Monkberry understand parameters for filters:
+Also Monkberry understands parameters for filters:
 
 ```js
 const filters = {
@@ -160,12 +160,12 @@ const filters = {
 {{ text | replace(/.../, '$1') }}
 ```
 
-And allow to combine filters:
+And allows to combine filters:
 ```twig
 {{ text | lower | replace(/.../, '$1') | upper }}
 ```
 
-That expression will be compiled to next JavaScript:
+That expression will be compiled into following JavaScript:
 ```js
 upper(replace(lower(text), /.../, '$1'));
 ```
@@ -198,7 +198,7 @@ and then import and use it in another template:
 
 ### Spread attributes
 
-Spread attributes allow easily convert object into node attributes.  
+Spread attributes allow to easily convert object into node attributes.  
 The properties of the object that you pass in are copied onto the node's attributes.
 
 ```twig
@@ -222,7 +222,7 @@ You can combine it with other attributes.
 <input {{...attr}} value={{ value }}/>
 ```
 
-Note what later updates of attributes override previous ones.
+Note that later updates of attributes override previous ones.
 
 ```js
 view.update({value: 'baz'});
@@ -230,7 +230,7 @@ view.update({value: 'baz'});
 view.update({attr: {value: 'new baz'}}); // Will override previous value.
 ```
 
-Spread operator also works well with custom attributes. In fact, this is best way to pass data into custom tag. 
+Spread operator also works well with custom attributes. In fact, this is the best way to pass data into custom tag. 
  
 ```twig
 <CustomTag {{...attr}}/>
@@ -256,7 +256,7 @@ Imported functions can be used as functions:
 <input value={{ upperCase(value) }}>
 ```
 
-Also it's can be used as filters as well:
+Imported functions can be used as filters as well:
 
 ```twig
 {% import upperCase from 'upper-case' %}
@@ -266,8 +266,8 @@ Also it's can be used as filters as well:
 
 ### Unsafe
 
-Monkberry escape all inserted variables by default. But if some times you want to insert 
-some HTML template via variable you can you _unsafe_ statement which is using `innerHTML`. 
+Monkberry escapes all inserted variables by default. But if you want to insert 
+some HTML template via variable you can use _unsafe_ statement which is using `innerHTML`. 
 Improper use of the _unsafe_ statement can open you up to a [cross-site scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting) attack. 
 
 ```twig
