@@ -50,15 +50,15 @@
     float: right;
   }
 
-  @include mobile {
-    margin-top: 50px;
-    padding-left: 25px;
-  }
-
   @media (max-width: 1140px) {
     margin-top: 75px;
     padding-left: 240px;
     padding-right: 50px;
+  }
+
+  @include mobile {
+    margin-top: 50px;
+    padding-left: 25px;
   }
 
   @include wide {
