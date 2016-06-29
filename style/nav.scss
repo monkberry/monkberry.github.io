@@ -11,7 +11,7 @@ nav {
   }
 
   @include wide {
-    width: 1120px;
+    width: $wide-width;
     margin-left: auto;
     margin-right: auto;
   }
