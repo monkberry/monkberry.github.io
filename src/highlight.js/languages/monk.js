@@ -28,6 +28,14 @@ module.exports = function(hljs) {
     ]
   };
 
+  var OF = {
+    beginKeywords: 'of',
+    keywords: {
+      keyword: 'of'
+    },
+    relevance: 0
+  };
+
   var TAGS = 'for endfor if endif else import unsafe';
 
   return {
@@ -46,7 +54,7 @@ module.exports = function(hljs) {
             keywords: TAGS,
             starts: {
               endsWithParent: true,
-              contains: [FILTER, FUNCTIONS, hljs.QUOTE_STRING_MODE],
+              contains: [OF, FILTER, FUNCTIONS, hljs.QUOTE_STRING_MODE],
               relevance: 0
             }
           }

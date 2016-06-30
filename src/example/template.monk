@@ -1,7 +1,6 @@
 <ol>
     {% for i, todo of todos %}
         <li>
-            <input type="checkbox" checked="{{ todo.complete }}" data-index="{{ i }}">
             {% if todo.complete %}
                 <del>{{ todo.text }}</del>
             {% else %}
@@ -12,5 +11,5 @@
 </ol>
 <form>
     <input type="text">
-    <button type="submit">Add #{{ todos.length }}</button>
+    <button type="submit">Add #{{ todos.length + 1 }}</button>
 </form>
