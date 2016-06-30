@@ -41,6 +41,7 @@ h1 {
 
 h2 {
   font-size: 28px;
+  margin-top: 50px;
   margin-bottom: 30px;
 }
 
@@ -102,6 +103,19 @@ code {
 
 .clear-both {
   clear: both;
+}
+
+.example {
+  @include mobile {
+    display: none;
+  }
+}
+
+.example-link {
+  display: none;
+  @include mobile {
+    display: block;
+  }
 }
 
 footer {

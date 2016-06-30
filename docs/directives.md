@@ -78,5 +78,5 @@ That's it!
 
 `:show`, `:fadeIn`, `:onclick` and other directives can be found in [monkberry-directives](https://github.com/monkberry/directives).
 
-[Next →](/docs/api)
+[Next →](/docs/examples)
 {% endraw %} 
