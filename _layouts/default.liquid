@@ -9,11 +9,20 @@
     {% endif %}
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% assign url = "http://monkberry.js.org" | append: page.url %}
+    {% assign og_title = "Monkberry – a JavaScript library for building web user interfaces" %}
+    {% assign og_description = "Monkberry is blazingly fast, small 1kb and simple JavaScript library for building web user interfaces." %}
+    {% assign og_image = "http://monkberry.js.org/assets/monkberry-opengraph-v2.png" %}
     <meta property="og:url" content="{{ url }}">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Monkberry – a JavaScript library for building web user interfaces">
-    <meta property="og:description" content="Monkberry is blazingly fast, small 1kb and simple JavaScript library for building web user interfaces.">
-    <meta property="og:image" content="http://monkberry.js.org/assets/monkberry-opengraph-v2.png">
+    <meta property="og:title" content="{{ og_title }}">
+    <meta property="og:description" content="{{ og_description }}">
+    <meta property="og:image" content="{{ og_image }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@antonmedv">
+    <meta name="twitter:creator" content="@antonmedv">
+    <meta name="twitter:title" content="{{ og_title }}">
+    <meta name="twitter:description" content="{{ og_description }}">
+    <meta name="twitter:image" content="{{ og_image }}">
     <link rel="canonical" href="{{ url }}">
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
