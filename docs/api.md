@@ -8,7 +8,7 @@ title: API Reference
 
 Monkberry API strictly follows [semantic versioning](http://semver.org).  
 
-### Monkberry.render(template, node[, options])
+### Monkberry.render&#8203;(template, node[, options])
 
 Returns a new `Monkberry` template instance, a "view".
 
@@ -28,7 +28,7 @@ Options object:
 * `directives` — `Object` of directives.
 
 
-### Monkberry.prerender(template, times)
+### Monkberry.prerender&#8203;(template, times)
 
 Prerender template for future usage.
 
@@ -44,23 +44,23 @@ const view = Monkberry.render(Template, document.body);
 
 This can be very useful. For example you can prerender templates while waiting for an XHR response.
 
-### Monkberry.prototype.appendTo(toNode)
+### Monkberry.prototype&#8203;.appendTo(toNode)
 
 Append rendered view to the specified node.
 
 * `toNode` — `Element` - DOM node
 
-### Monkberry.prototype.insertBefore(toNode)
+### Monkberry.prototype&#8203;.insertBefore(toNode)
 
 Insert rendered view before the specified node.
 
 * `toNode` — `Element` - DOM node.
 
-### Monkberry.prototype.createDocument()
+### Monkberry.prototype&#8203;.createDocument()
 
 Return view's nodes. Note that if your template contains more than one root element, `createDocument` will return `DocumentFragment` that contains all of those nodes. If you have only one root node, it will be returned as is.
 
-### Monkberry.prototype.update(state)
+### Monkberry.prototype&#8203;.update(state)
 
 Update rendered template with a new state. You can specify only a part of state to update or you can update the entire state.
 
@@ -80,11 +80,11 @@ view.update(state);
 view.update({title: 'Title #2'});
 ```
 
-### Monkberry.prototype.remove()
+### Monkberry.prototype&#8203;.remove()
 
 Remove view's nodes from document, and put it to pool for future reuse.
 
-### Monkberry.prototype.querySelector(query)
+### Monkberry.prototype&#8203;.querySelector(query)
 
 Select node by query.
 
