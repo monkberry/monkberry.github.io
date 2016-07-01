@@ -30,7 +30,7 @@ export default class extends Todo {
     Object.assign(this.state, state);
     
     // Call update of view itself.
-    super.update(state);
+    super.update(this.state);
   }
   
   onEdit(event) {
