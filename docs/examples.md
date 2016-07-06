@@ -22,6 +22,15 @@ You can play this whose examples on jsfiddle.
 </div>
 <a class="example-link" href="//jsfiddle.net/medv/kq950d9L/">Play on JSFiddle</a>
 
+### Random colors
+
+This example shows usage of directives in Monkberry. 
+
+<div class="example">
+    <iframe width="100%" height="300" src="//jsfiddle.net/medv/2fyb48az/embedded/result,js,html,css/dark/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+</div>
+<a class="example-link" href="//jsfiddle.net/medv/2fyb48az/">Play on JSFiddle</a>
+
 ## TodoMVC
 
 Here is example of todo app with Monkberry and Redux: [monkberry/todomvc](https://github.com/monkberry/todomvc).  
