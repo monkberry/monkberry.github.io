@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   getLatestReleaseVersion();
   highlightCodeBlocks();
   initExample();
+  setTimeout(showAds, 3000);
 });
 
 window.addEventListener('resize', () => {
@@ -53,5 +54,12 @@ function initExample() {
   const result = document.querySelector('.js-result');
   if(result) {
     example(result);
+  }
+}
+
+function showAds() {
+  const ads = document.querySelector('#carbonads');
+  if (ads) {
+    ads.classList.add('-visible');
   }
 }
