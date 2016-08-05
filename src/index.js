@@ -3,7 +3,7 @@ import hljs from './highlight.js/index';
 import example from './example/example';
 
 document.addEventListener('DOMContentLoaded', () => {
-  setTimeout(animateStars, 500);
+  //setTimeout(animateStars, 500);
   getLatestReleaseVersion();
   highlightCodeBlocks();
   initExample();
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 window.addEventListener('resize', () => {
-  animateStars();
+  //animateStars();
 });
 
 function showIntro() {
