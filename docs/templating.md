@@ -67,7 +67,8 @@ Any number of variables in `if`:
 > Render that template:
 >
 > ```js
-> const view = Monkberry.render(Template, {
+> const view = Monkberry.render(Template, document.body);
+> view.update({
 >   cond: true,
 >   value: 'one'
 > });
